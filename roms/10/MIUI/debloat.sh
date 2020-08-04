@@ -5,9 +5,7 @@ thispath=`cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd`
 
 rm -rf $1/app/cit
 rm -rf $1/app/MiuiCompass
-rm -rf $1/app/MiuiScreenRecorder
 rm -rf $1/app/MiuiVideoGlobal
-rm -rf $1/app/Notes
 rm -rf $1/app/PaymentService
 rm -rf $1/app/Calculator
 rm -rf $1/priv-app/Backup
@@ -32,7 +30,6 @@ rm -rf $1/app/com.miui.qr
 rm -rf $1/app/FM
 rm -rf $1/app/MiuiBugReport
 rm -rf $1/priv-app/MiuiVideo
-rm -rf $1/priv-app/PersonalAssistant
 rm -rf $1/priv-app/MiuiCamera
 rm -rf $1/priv-app/MiService
 rm -rf $1/app/AnalyticsCore
@@ -65,11 +62,9 @@ rm -rf $1/priv-app/GameBoosterGlobal
 rm -rf $1/priv-app/GameCenterGlobal
 rm -rf $1/priv-app/GlobalUserGuide
 rm -rf $1/priv-app/MiDrop
-rm -rf $1/priv-app/MiuiBrowserGlobal
 rm -rf $1/priv-app/MiuiCamera
 rm -rf $1/priv-app/MiuiScanner
 rm -rf $1/priv-app/Music
-rm -rf $1/priv-app/PersonalAssistantGlobal
 rm -rf $1/priv-app/SoundRecorder
 rm -rf $1/priv-app/Turbo
 rm -rf $1/priv-app/Weather
@@ -86,7 +81,6 @@ rm -rf $1/product/app/com.miui.qr
 rm -rf $1/product/app/FM
 rm -rf $1/product/app/MiuiBugReport
 rm -rf $1/product/priv-app/MiuiVideo
-rm -rf $1/product/priv-app/PersonalAssistant
 rm -rf $1/product/priv-app/MiuiCamera
 rm -rf $1/product/priv-app/MiService
 rm -rf $1/product/app/AnalyticsCore
@@ -119,11 +113,9 @@ rm -rf $1/product/priv-app/GameBoosterGlobal
 rm -rf $1/product/priv-app/GameCenterGlobal
 rm -rf $1/product/priv-app/GlobalUserGuide
 rm -rf $1/product/priv-app/MiDrop
-rm -rf $1/product/priv-app/MiuiBrowserGlobal
 rm -rf $1/product/priv-app/MiuiCamera
 rm -rf $1/product/priv-app/MiuiScanner
 rm -rf $1/product/priv-app/Music
-rm -rf $1/product/priv-app/PersonalAssistantGlobal
 rm -rf $1/product/priv-app/SoundRecorder
 rm -rf $1/product/priv-app/Turbo
 rm -rf $1/product/priv-app/Weather
@@ -146,3 +138,9 @@ rm -rf $1/priv-app/MiuiMusicGlobal
 #rm -rf $1/fonts/NotoSansCJK-Regular.ttc
 #rm -rf $1/fonts/NotoSansCuneiform-Regular.ttf
 #rm -rf $1/media/theme/miui_mod_icons
+
+# Add by Pinkdoge
+rm -rf $1/app/XiaomiServiceFramework
+rm -rf $1/app/XiaomiSimActivateService
+rm -rf $1/product/priv-app/GoogleRestore
+rm -rf $1/product/priv-app/SetupWizard
