@@ -1,4 +1,4 @@
-# ErfanGSIs Tool - Hitsuki Edition
+# ErfanGSIs Tool - Hitsuki & Pinkdoge Edition
 
 This repository is a fork of a fork of the ErfanGSIs Tool for private use, you are free to create your fork and make your changes (at least give the credits to all contributors of the ErfanGSIs Tool project).
 
