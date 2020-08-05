@@ -34,3 +34,14 @@ sed -i "/miui.notch/d" $1/build.prop
 # Wifi fix
 cp -fpr $thispath/bin/* $1/bin/
 cat $thispath/rw-system.add.sh >> $1/bin/rw-system.sh
+
+# Add advanced restart
+rm -rf $1/media/theme/default/powermenu
+cp -fpr $thispath/media/theme/default/powermenu $1/media/theme/default/powermenu
+
+# Mi Account fix 
+# Change device name to Mi 10 Pro
+sed -i 's/ro.product.system.device=.*$/ro.product.system.device=cmi/g' $1/build.prop
+sed -i 's/ro.product.system.model=.*$/ro.product.system.model=Mi 10 Pro/g' $1/build.prop
+sed -i 's/ro.product.system.name=.*$/ro.product.system.name=cmi/g' $1/build.prop
+mv $1/etc/device_features/*.xml $1/etc/device_features/cmi.xml
