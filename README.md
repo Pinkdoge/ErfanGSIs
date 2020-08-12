@@ -9,7 +9,7 @@ You can find GSIs made with this tool on the channel [@TrebleExperience](https:/
 ### Download tools
 
 ```
-git clone --recurse-submodules https://github.com/Pinkdoge/ErfanGSIs.git
+git clone --recurse-submodules https://github.com/HitaloSama/ErfanGSIs.git
 cd ErfanGSIs
 ```
 
