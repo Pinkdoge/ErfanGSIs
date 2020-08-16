@@ -7,3 +7,5 @@ output
 input
 working
 __pycache__/
+telegram_bot/config.js
+telegram_bot/node_modules/*
