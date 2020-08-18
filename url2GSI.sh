@@ -101,7 +101,16 @@ LEAVE()
     exit 1
 }
 
-echo "Updating tools..."
+echo "-> Removing possible residuals from previous builds to avoid problems"
+   if [ -d "$PROJECT_DIR/working/system/" ]; then
+       sudo umount "$PROJECT_DIR/working/system/"
+   fi
+   if [ -d "$PROJECT_DIR/tools/ROM_resigner/tmp/" ]; then
+       sudo rm -rf "$PROJECT_DIR/tools/ROM_resigner/tmp/"
+   fi
+   sudo rm -rf working tmp
+
+echo "-> Updating tools..."
 "$PROJECT_DIR"/update.sh
 
 # Create input & working directory if it does not exist
