@@ -1,26 +1,42 @@
-## Requirements
-    Linux or Mac
+# ErfanGSIs Tool - Hitsuki Edition
 
-## Released GSIs
-Download links: https://mirrors.lolinet.com/firmware/gsi/  
-XDA thread: https://forum.xda-developers.com/project-treble/trebleenabled-device-development/pie-erfan-gsi-ports-t3906486  
-Telegram group: https://t.me/ErfanGSIs  
-Telegram channel: https://t.me/ErfanGSI  
+This repository is a fork of the ErfanGSIs Tool with numerous changes/improvements!
 
-## How to use
+### How to download
 
-### Download tools
-```
-git clone --recurse-submodules https://github.com/erfanoabdi/ErfanGSIs.git
+```bash
+git clone --recurse-submodules https://github.com/HitaloSama/ErfanGSIs-Hitsuki.git ErfanGSIs 
 cd ErfanGSIs
 ```
 
-### For setting up requirements
-    bash setup.sh
+### Setting up requirements
 
-### Generating GSI from stock firmware URL
-Example: for making OxygenOS of oneplus 7 pro firmware, you can use this command
+```bash
+bash setup.sh
 ```
-./url2GSI.sh https://oxygenos.oneplus.net/OnePlus7ProOxygen_21.O.07_OTA_007_all_1905120542_fc480574576b4843.zip OxygenOS
+
+## Usage
+
+```bash
+./url2GSI.sh <Firmware link> <Firmware type> [Other args]
+[--help|-h|-?] [--ab|-b] [--aonly|-a] [--mounted|-m] [--cleanup|-c]
+        Firmware link: Firmware download link or local path
+        Firmware type: Firmware mode
+        --ab: Build only AB
+        --aonly: Build only A-Only
+        --cleanup: Cleanup downloaded firmware
+        --help: To show this info
 ```
-check url2GSI.sh for more info
+
+### Supported firmware types
+
+```bash
+Supported types on Android 9:
+Nubia, Moto, OneUI, MIUI, OxygenOS, ZenUI, Generic, Flyme, Pixel, ColorOS, ZUI, Xperia, RazerUI, VOS, RogUI
+
+Supported types on Android 10:
+MIUI, OxygenOS, Generic, Pixel, JoyUI, Moto, ZenUI, ZUI, Flyme, ColorOS, VOS, OneUI, RogUI, Nubia
+
+Supported types on Android 11:
+Generic, Pixel, MIUI, OxygenOS, OneUI
+```
