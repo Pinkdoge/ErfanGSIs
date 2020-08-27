@@ -127,14 +127,6 @@ if [ "$flag" == "false" ]; then
     exit 1
 fi
 
-echo "-> Setting the Android version of GSI"
-if [ -t "$verRunner" ]; then
-    rm -rf cache/
-    mkdir cache; cd cache; touch ver; echo "$sourcever" >> ver; export sourcever2=`cat ver`; mv ver ../ver; cd ../
-else
-    mkdir cache; cd cache; touch ver; echo "$sourcever" >> ver; export sourcever2=`cat ver`; mv ver ../ver; cd ../
-fi
-
 # Detect rom folder again
 if [[ ! -d "$romsdir/$sourcever/$romtype" ]]; then
     echo "-> $romtype is not supported rom for android $sourcever"
@@ -248,4 +240,4 @@ fi
 $scriptsdir/mkimage.sh $systemdir $outputtype $systemsize $output $useold > $tempdir/mkimage.log
 
 echo "-> Remove Temp dir"
-rm -rf "$tempdir" "$verRunner"
+rm -rf "$tempdir"

@@ -76,7 +76,7 @@ DOWNLOAD()
     URL="$1"
     ZIP_NAME="$2"
     echo "-> Downloading firmware to: $ZIP_NAME"
-    aria2c -x16 -j$(nproc) -U "Mozilla/5.0" -d "$PROJECT_DIR/input" -o "$ACTUAL_ZIP_NAME" ${URL} || wget -U "Mozilla/5.0" ${URL} -O "$ZIP_NAME"
+    aria2c -x16 -j$(nproc) -U "Mozilla/5.0" -d "$PROJECT_DIR/input" -o "$ACTUAL_ZIP_NAME" ${URL} > /dev/null 2>&1 || wget -U "Mozilla/5.0" ${URL} -O "$ZIP_NAME" > /dev/null 2>&1
 }
 
 MOUNT()
@@ -112,6 +112,18 @@ echo " "
 
 echo "-> Updating tools..."
 "$PROJECT_DIR"/update.sh
+
+echo "-> Removing possible residuals from previous builds to avoid problems"
+   if [ -d "$PROJECT_DIR/working/" ]; then
+       sudo umount "$PROJECT_DIR/working/"
+       sudo rm -rf "$PROJECT_DIR/working/"
+   fi
+   if [ -d "$PROJECT_DIR/tools/ROM_resigner/tmp/" ]; then
+       sudo rm -rf "$PROJECT_DIR/tools/ROM_resigner/tmp/"
+   fi
+   if [ -d "$PROJECT_DIR/tmp/" ]; then
+       sudo rm -rf "$PROJECT_DIR/tmp/"
+   fi
 
 # Create input & working directory if it does not exist
 mkdir -p "$PROJECT_DIR/input" "$PROJECT_DIR/working" "$PROJECT_DIR/output"
@@ -151,11 +163,6 @@ UMOUNT "$PROJECT_DIR/working/system"
 rm -rf "$PROJECT_DIR/working"
 
 echo "-> Porting ${SRCTYPENAME} GSI done on: $PROJECT_DIR/output"
-
-if [[ -f "$PROJECT_DIR/private_utils.sh" ]]; then
-    . "$PROJECT_DIR/private_utils.sh"
-    UPLOAD "$PROJECT_DIR/output" ${SRCTYPENAME} ${AB} ${AONLY} "${ORIGINAL_URL}"
-fi
 
 DEBUG=false
 if [ $DEBUG == true ]; then
