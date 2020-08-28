@@ -115,7 +115,7 @@ echo "-> Updating tools..."
 
 echo "-> Removing possible residuals from previous builds to avoid problems"
    if [ -d "$PROJECT_DIR/working/" ]; then
-       sudo umount "$PROJECT_DIR/working/"
+       sudo umount "$PROJECT_DIR/working/system"
        sudo rm -rf "$PROJECT_DIR/working/"
    fi
    if [ -d "$PROJECT_DIR/tools/ROM_resigner/tmp/" ]; then
