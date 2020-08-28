@@ -51,19 +51,3 @@ sed -i 's/ro.product.system.device=.*$/ro.product.system.device=cmi/g' $1/build.
 sed -i 's/ro.product.system.model=.*$/ro.product.system.model=Mi 10 Pro/g' $1/build.prop
 sed -i 's/ro.product.system.name=.*$/ro.product.system.name=cmi/g' $1/build.prop
 mv $1/etc/device_features/*.xml $1/etc/device_features/cmi.xml
-
-# Fix screen fliker 
-echo "debug.gralloc.gfx_ubwc_disable=1" >> $1/build.prop
-echo "debug.gralloc.enable_fb_ubwc=0" >> $1/build.prop
-echo "sdm.debug.rotator_disable_ubwc=1" >> $1/build.prop
-echo "dev.pm.dyn_samplingrate=1" >> $1/build.prop
-echo "persist.demo.hdmirotationlock=false" >> $1/build.prop
-
-# Fix paper mode
-echo "sys.paper_mode_max_level=255" >> $1/build.prop
-echo "sys.tianma_nt36672a_offset=6" >> $1/build.prop
-echo "sys.tianma_nt36672a_length=42" >> $1/build.prop
-echo "sys.boe_td4320_offset=-9" >> $1/build.prop
-echo "sys.boe_td4320_length=42" >> $1/build.prop
-echo "sys.shenchao_nt36672a_offset=-10" >> $1/build.prop
-echo "sys.shenchao_nt36672a_length=38" >> $1/build.prop
