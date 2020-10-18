@@ -237,5 +237,15 @@ if [ "$sourcever" == "9" ]; then
 fi
 $scriptsdir/mkimage.sh $systemdir $outputtype $systemsize $output $useold > $tempdir/mkimage.log
 
-echo "Remove Temp dir"
+PROJECT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+OUTPUT_IMAGE="$PROJECT_DIR/output/$outputimagename"
+
+if [ -f "$OUTPUT_IMAGE" ]; then
+   echo "-> Created image ($outputtype): $outputimagename | Size: $(bytesToHuman $systemsize)"
+else
+   echo "-> Error: Output image for $outputtype: $outputimagename don't exists!"
+   exit 1
+fi
+
+echo "-> Remove Temp dir"
 rm -rf "$tempdir"
