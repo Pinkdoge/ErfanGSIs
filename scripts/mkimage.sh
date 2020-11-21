@@ -74,19 +74,22 @@ if [[ -f "$tempdir/file_contexts" ]]; then
     echo "/pds                    u:object_r:rootfs:s0" >> "$tempdir/file_contexts"
     echo "/tombstones             u:object_r:rootfs:s0" >> "$tempdir/file_contexts"
     echo "/factory                u:object_r:rootfs:s0" >> "$tempdir/file_contexts"
-    echo "/oneplus                u:object_r:rootfs:s0" >> "$tempdir/file_contexts"
+    echo "/oneplus(/.*)?          u:object_r:rootfs:s0" >> "$tempdir/file_contexts"
     echo "/addon.d                u:object_r:rootfs:s0" >> "$tempdir/file_contexts"
     echo "/op_odm                 u:object_r:rootfs:s0" >> "$tempdir/file_contexts"
+    echo "/avb                    u:object_r:rootfs:s0" >> "$tempdir/file_contexts"
     fcontexts="$tempdir/file_contexts"
 fi
 sudo rm -rf "$systemdir/persist"
 sudo rm -rf "$systemdir/bt_firmware"
 sudo rm -rf "$systemdir/firmware"
 sudo rm -rf "$systemdir/dsp"
+sudo rm -rf "$systemdir/cache"
 sudo mkdir -p "$systemdir/bt_firmware"
 sudo mkdir -p "$systemdir/persist"
 sudo mkdir -p "$systemdir/firmware"
 sudo mkdir -p "$systemdir/dsp"
+sudo mkdir -p "$systemdir/cache"
 
 if [ "$5" == "--old" ]; then
     if [ "$outputtype" == "Aonly" ]; then

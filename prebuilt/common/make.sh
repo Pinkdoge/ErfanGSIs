@@ -42,12 +42,15 @@ sed -i "/ro.setupwizard.mode/d" $1/etc/prop.default
 sed -i "/ro.setupwizard.mode/d" $1/build.prop
 sed -i "/ro.setupwizard.mode/d" $1/product/build.prop
 echo "ro.setupwizard.mode=DISABLED" >> $1/etc/prop.default
+echo "ro.setupwizard.mode=DISABLED" >> $1/product/build.prop
 # Disable vndk lite
 echo "ro.vndk.lite=false" >> $1/etc/prop.default
+echo "ro.vndk.lite=false" >> $1/product/build.prop
 # disable RescureParty
 echo "persist.sys.disable_rescue=true" >> $1/etc/prop.default
 # disable privapp_permissions checking
 echo "ro.control_privapp_permissions=disable" >> $1/etc/prop.default
+echo "ro.control_privapp_permissions=disable" >> $1/product/build.prop
 # fix vndk26 vold
 sed -i "/reserved_disk/d" $1/etc/init/vold.rc
 # Adb prop
@@ -65,13 +68,3 @@ cp -fpr $1/../../build.prop $1/
 
 ## Append to phh script
 cat $thispath/rw-system.add.sh >> $1/bin/rw-system.sh
-
-
-## Brightness fix
-# Some systems are using custom light services, don't apply this patch on those roms
-if [ -f $romdir/DONTPATCHLIGHT ]; then
-    echo "Patching lights for brightness fix is not supported in this rom. Skipping..."
-else
-    echo "Start Patching Light Services for Brightness Fix..."
-    $thispath/brightnessfix/make.sh "$systempath"
-fi

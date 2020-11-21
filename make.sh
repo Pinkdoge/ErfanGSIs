@@ -62,7 +62,7 @@ fi
 
 # Detect Source type, AB or not
 sourcetype="Aonly"
-if [[ -e "$sourcepath/init.rc" ]]; then
+if [[ -e "$sourcepath/system" ]]; then
     sourcetype="AB"
 fi
 
@@ -106,7 +106,11 @@ if [[ ! "$istreble" == "true" ]]; then
 fi
 
 # Detect Source API level
-sourcever=`cat $systemdir/system/build.prop | grep ro.build.version.release | cut -d "=" -f 2`
+if grep -q ro.build.version.release_or_codename $systemdir/system/build.prop; then
+    sourcever=`grep ro.build.version.release_or_codename $systemdir/system/build.prop | cut -d "=" -f 2`
+else
+    sourcever=`grep ro.build.version.release $systemdir/system/build.prop | cut -d "=" -f 2`
+fi
 if [ $(echo $sourcever | cut -d "." -f 2) == 0 ]; then
     sourcever=$(echo $sourcever | cut -d "." -f 1)
 fi
@@ -114,6 +118,7 @@ flag=false
 case "$sourcever" in
     *"9"*) flag=true ;;
     *"10"*) flag=true ;;
+    *"11"*) flag=true ;;
 esac
 if [ "$flag" == "false" ]; then
     echo "$sourcever is not supported"
@@ -155,10 +160,10 @@ fi
 echo "Patching started..."
 $scriptsdir/fixsymlinks.sh "$systemdir/system" 2>/dev/null
 $scriptsdir/nukeABstuffs.sh "$systemdir/system" 2>/dev/null
+$prebuiltdir/vendor_vndk/make$sourcever.sh "$systemdir/system" 2>/dev/null
 $prebuiltdir/$sourcever/make.sh "$systemdir/system" "$romsdir/$sourcever/$romtype" 2>/dev/null
 $prebuiltdir/$sourcever/makeroot.sh "$systemdir" "$romsdir/$sourcever/$romtype" 2>/dev/null
 $prebuiltdir/common/make.sh "$systemdir/system" "$romsdir/$sourcever/$romtype" 2>/dev/null
-$prebuiltdir/vendor_vndk/make$sourcever.sh "$systemdir/system" 2>/dev/null
 $romsdir/$sourcever/$romtype/make.sh "$systemdir/system" 2>/dev/null
 $romsdir/$sourcever/$romtype/makeroot.sh "$systemdir" 2>/dev/null
 if [ ! "$romtype" == "$romtypename" ]; then
@@ -227,7 +232,7 @@ echo "Raw Image Size: $(bytesToHuman $systemsize)" >> "$outputinfo"
 
 echo "Creating Image: $outputimagename"
 # Use ext4fs to make image in P or older!
-if [ "$sourcever" -lt "10" ]; then
+if [ "$sourcever" == "9" ]; then
     useold="--old"
 fi
 $scriptsdir/mkimage.sh $systemdir $outputtype $systemsize $output $useold > $tempdir/mkimage.log
