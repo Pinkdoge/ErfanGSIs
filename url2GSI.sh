@@ -8,12 +8,14 @@ AB=true
 AONLY=true
 MOUNTED=false
 CLEAN=false
+DYNAMIC=false
 
 usage()
 {
-    echo "Usage: [--help|-h|-?] [--ab|-b] [--aonly|-a] [--mounted|-m] [--cleanup|-c] $0 <Firmware link> <Firmware type> [Other args]"
+    echo "Usage: [--help|-h|-?] [--dynamic|-d] [--ab|-b] [--aonly|-a] [--mounted|-m] [--cleanup|-c] $0 <Firmware link> <Firmware type> [Other args]"
     echo -e "\tFirmware link: Firmware download link or local path"
     echo -e "\tFirmware type: Firmware mode"
+    echo -e "\t--dynamic: Use this option only if the firmware contains dynamic partitions"
     echo -e "\t--ab: Build only AB"
     echo -e "\t--aonly: Build only A-Only"
     echo -e "\t--cleanup: Cleanup downloaded firmware"
@@ -26,6 +28,10 @@ do
 key="$1"
 
 case $key in
+    --dynamic|-d)
+    DYNAMIC=true
+    shift
+    ;;
     --ab|-b)
     AONLY=false
     AB=true
@@ -52,8 +58,9 @@ esac
 done
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
-if [[ ! -n $2 ]]; then
-    echo "ERROR: Enter all needed parameters"
+if [[ ! -n $1 ]]; then
+    echo "-> ERROR!"
+    echo " - Enter all needed parameters"
     usage
     exit
 fi
@@ -131,8 +138,11 @@ if [ $MOUNTED == false ]; then
         DOWNLOAD "$URL" "$ZIP_NAME"
         URL="$ZIP_NAME"
     fi
-    "$PROJECT_DIR"/zip2img.sh "$URL" "$PROJECT_DIR/working" || exit 1
-    export FIRMWARE_PATH=$URL
+    if [ "$DYNAMIC" == true ]; then
+       "$PROJECT_DIR"/dynamic.sh "$URL" --odm --product --ext --opproduct
+    elif [ $DYNAMIC == false ] ; then
+       "$PROJECT_DIR"/zip2img.sh "$URL" "$PROJECT_DIR/working" || exit 1
+    fi
     if [ $CLEAN == true ]; then
         rm -rf "$ZIP_NAME"
     fi
