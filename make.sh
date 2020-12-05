@@ -191,6 +191,7 @@ fi
 
 date=`date +%Y%m%d`
 outputname="$romtypename-$outputtype-$sourcever-$date-ErfanGSI"
+outputoverlaysname="$romtypename-$outputtype-$date-ErfanGSI-Overlays.zip"
 outputimagename="$outputname".img
 outputtextname="$outputname".txt
 if [ "$4" == "" ]; then
@@ -202,6 +203,7 @@ else
     outdir="$4"
 fi
 output="$outdir/$outputimagename"
+outputoverlays="$outdir/$outputoverlaysname"
 outputinfo="$outdir/$outputtextname"
 
 $scriptsdir/getinfo.sh "$systemdir/system" > "$outputinfo"
@@ -241,8 +243,13 @@ PROJECT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 OUTPUT_IMAGE="$PROJECT_DIR/output/$outputimagename"
 
 if [ -f "$OUTPUT_IMAGE" ]; then
+   # Builded
    echo "-> Created image ($outputtype): $outputimagename | Size: $(bytesToHuman $systemsize)"
+   if [ -f "$PROJECT_DIR/output/.tmpzip" ]; then
+      mv "$PROJECT_DIR/output/.tmpzip" "$PROJECT_DIR/output/$outputoverlaysname"
+   fi
 else
+   # Oops... Error found
    echo "-> Error: Output image for $outputtype: $outputimagename don't exists!"
    exit 1
 fi
