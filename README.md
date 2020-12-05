@@ -2,6 +2,15 @@
 
 This repository is a fork of the ErfanGSIs Tool with numerous changes/improvements!
 
+## Warranty
+
+If you are only a user you can ignore these warnings!
+
+The ErfanGSIs Tool is distributed with the GPL-3.0 License
+It is also distributed with a NOTICE with some warnings made by Erfan itself that must also be read before any changes to the tool code.
+* [GPL-3.0 License](https://github.com/HitaloSama/ErfanGSIs-Hitsuki/blob/master/LICENSE)
+* [NOTICE](https://github.com/HitaloSama/ErfanGSIs-Hitsuki/blob/master/NOTICE)
+
 ### How to download
 
 ```bash
@@ -39,5 +48,5 @@ Supported types on Android 10:
 MIUI, OxygenOS, Generic, Pixel, JoyUI, Moto, ZenUI, ZUI, Flyme, ColorOS, VOS, OneUI, RogUI, Nubia
 
 Supported types on Android 11:
-Generic, Pixel, MIUI
+Generic, Pixel, MIUI, OneUI
 ```
