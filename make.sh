@@ -190,14 +190,8 @@ if [ "$outputtype" == "Aonly" ]; then
 fi
 
 date=`date +%Y%m%d`
-<<<<<<< HEAD
-outputname="$romtypename-$outputtype-$sourcever-$date-ErfanGSI"
-outputoverlaysname="$romtypename-$outputtype-$date-ErfanGSI-Overlays.zip"
-=======
 outputname="$romtypename-$outputtype-$sourcever-$date-ErfanGSI-YuMiGSIs"
-outputoverlaysname="$romtypename-$date-ErfanGSI-YuMiGSIs-Overlays.zip"
-# ^ Dynamic feature
->>>>>>> a73a4df... make.sh: Fix issue with overlays (name/mv)
+outputoverlaysname="$romtypename-$date-ErfanGSI-Overlays.zip"
 outputimagename="$outputname".img
 outputtextname="$outputname".txt
 if [ "$4" == "" ]; then
