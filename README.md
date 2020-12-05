@@ -19,11 +19,12 @@ bash setup.sh
 
 ```bash
 ./url2GSI.sh <Firmware link> <Firmware type> [Other args]
-[--help|-h|-?] [--ab|-b] [--aonly|-a] [--mounted|-m] [--cleanup|-c]
+[--help|-h|-?] [--ab|-b] [--dynamic|-d] [--aonly|-a] [--mounted|-m] [--cleanup|-c]
         Firmware link: Firmware download link or local path
         Firmware type: Firmware mode
         --ab: Build only AB
         --aonly: Build only A-Only
+        --dynamic: Use this option only if the firmware contains dynamic partitions
         --cleanup: Cleanup downloaded firmware
         --help: To show this info
 ```
@@ -38,5 +39,5 @@ Supported types on Android 10:
 MIUI, OxygenOS, Generic, Pixel, JoyUI, Moto, ZenUI, ZUI, Flyme, ColorOS, VOS, OneUI, RogUI, Nubia
 
 Supported types on Android 11:
-Generic, Pixel, MIUI, OxygenOS, OneUI
+Generic, Pixel, MIUI
 ```
