@@ -48,5 +48,5 @@ Supported types on Android 10:
 MIUI, OxygenOS, Generic, Pixel, JoyUI, Moto, ZenUI, ZUI, Flyme, ColorOS, VOS, OneUI, RogUI, Nubia
 
 Supported types on Android 11:
-Generic, Pixel, MIUI, OneUI
+Generic, Pixel
 ```
